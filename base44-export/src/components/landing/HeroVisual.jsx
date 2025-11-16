@@ -9,7 +9,7 @@ export default function HeroVisual({ imageUrl }) {
     <div className="relative w-full flex justify-center lg:justify-end">
       {heroImageUrl ? (
         <div className="relative w-full max-w-[600px] lg:max-w-[800px]">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden">
             <img 
               src={heroImageUrl} 
               alt="MTG Subscription Box" 
