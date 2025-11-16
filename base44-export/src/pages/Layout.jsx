@@ -45,14 +45,13 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className={`min-h-screen flex flex-col ${isDark ? 'bg-[#0B0D10]' : 'bg-[#F7F7F8]'} relative`}>
-      {isDark && (
-        <div 
-          className="fixed inset-0 bg-center bg-cover opacity-20 pointer-events-none z-0"
-          style={{
-            backgroundImage: "url('https://raw.githubusercontent.com/JC-fin/galaxy-gaming/main/Brand%20Pack/SVGs/Galaxy%20Background.svg')"
-          }}
-        ></div>
-      )}
+      {/* Galaxy Background all over the site */}
+      <div 
+        className="fixed inset-0 bg-center bg-cover opacity-30 pointer-events-none z-0"
+        style={{
+          backgroundImage: "url('/assets/brand/logos/SVGs/Galaxy Background.svg')"
+        }}
+      ></div>
       
       <style>{`
         :root {

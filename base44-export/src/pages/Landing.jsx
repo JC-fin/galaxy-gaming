@@ -88,7 +88,7 @@ export default function Landing() {
   ];
 
   const images = {
-    heroBox: "https://raw.githubusercontent.com/JC-fin/galaxy-gaming/main/Website%20Assets/Hero%20Image%203.png",
+    heroBox: "/assets/brand/images/Hero Image 3.png",
     collectorCard: null,
     casualCard: null,
     competitorCard: null,
@@ -133,27 +133,9 @@ export default function Landing() {
           50% { opacity: 0.6; }
         }
         
+        /* REMOVED: nebula-shimmer animation (purple animation across screen) */
         .nebula-foil::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(
-            45deg,
-            transparent 30%,
-            rgba(124, 58, 237, 0.15) 40%,
-            rgba(167, 139, 250, 0.15) 50%,
-            rgba(168, 85, 247, 0.15) 60%,
-            transparent 70%
-          );
-          animation: nebula-shimmer 4s infinite;
-        }
-        
-        @keyframes nebula-shimmer {
-          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+          display: none;
         }
         
         .constellation-dots {
@@ -210,16 +192,23 @@ export default function Landing() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-transparent starfield-bg">
-        <div className="absolute inset-0 constellation-dots opacity-30"></div>
+        {/* Galaxy Background all over the site */}
+        <div 
+          className="fixed inset-0 bg-center bg-cover opacity-30 pointer-events-none z-0"
+          style={{
+            backgroundImage: "url('/assets/brand/logos/SVGs/Galaxy Background.svg')"
+          }}
+        ></div>
+        <div className="absolute inset-0 constellation-dots opacity-20"></div>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-16 lg:py-24 relative z-10">
           {/* Left: Copy & CTAs */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 relative z-20">
               <div className="space-y-4">
-                <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl leading-tight" style={{ color: '#FFFFFF' }}>
+                <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl leading-tight text-white font-bold" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
                   Curated Monthly MTG Boxes
                 </h2>
-                <p className="text-lg leading-relaxed" style={{ color: '#FFFFFF' }}>
+                <p className="text-lg leading-relaxed text-white" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
                   Get exclusive MTG booster packs, promos, and accessories with our monthly Magic the Gathering subscription box. Curated for collectors, casuals, and competitors.
                 </p>
               </div>

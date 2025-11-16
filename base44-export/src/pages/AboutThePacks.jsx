@@ -123,27 +123,9 @@ export default function AboutThePacks() {
           overflow: hidden;
         }
         
+        /* REMOVED: nebula-shimmer animation (purple animation across screen) */
         .nebula-foil::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(
-            45deg,
-            transparent 30%,
-            rgba(124, 58, 237, 0.15) 40%,
-            rgba(167, 139, 250, 0.15) 50%,
-            rgba(168, 85, 247, 0.15) 60%,
-            transparent 70%
-          );
-          animation: nebula-shimmer 4s infinite;
-        }
-        
-        @keyframes nebula-shimmer {
-          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+          display: none;
         }
         
         .card-hover {

@@ -2,15 +2,18 @@ import React from "react";
 import { Package } from "lucide-react";
 
 export default function HeroVisual({ imageUrl }) {
+  // Use Hero Image 3.png from brand assets, sized 800x800
+  const heroImageUrl = imageUrl || "/assets/brand/images/Hero Image 3.png";
+  
   return (
     <div className="relative hero-glow">
-      {imageUrl ? (
+      {heroImageUrl ? (
         <div className="relative">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             <img 
-              src={imageUrl} 
+              src={heroImageUrl} 
               alt="MTG Subscription Box" 
-              className="w-full h-auto"
+              className="w-full max-w-[800px] h-auto aspect-square object-contain"
             />
           </div>
         </div>
