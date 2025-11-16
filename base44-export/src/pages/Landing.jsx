@@ -132,6 +132,7 @@ export default function Landing() {
           letter-spacing: -0.02em;
         }
         
+        /* REMOVED: starfield-bg twinkle animation - was causing dimming/brightening on hero and subscribe sections */
         .starfield-bg {
           background-image: 
             radial-gradient(2px 2px at 20% 30%, white, transparent),
@@ -142,12 +143,7 @@ export default function Landing() {
             radial-gradient(1px 1px at 33% 80%, white, transparent);
           background-size: 200% 200%;
           background-position: 0% 0%;
-          animation: twinkle 8s ease-in-out infinite;
-        }
-        
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.6; }
+          /* NO ANIMATION - static stars only */
         }
         
         /* REMOVED: nebula-shimmer animation (purple animation across screen) */
@@ -535,7 +531,7 @@ export default function Landing() {
           
           <Button 
             size="lg" 
-            className="bg-white text-[#7C3AED] hover:bg-gray-100 px-12 py-6 text-xl font-bold rounded-xl shadow-2xl"
+            className="bg-white text-[#7C3AED] hover:bg-gray-100 px-12 py-6 text-xl font-bold rounded-xl"
           >
             👉 Subscribe Today
           </Button>

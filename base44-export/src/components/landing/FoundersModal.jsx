@@ -52,17 +52,11 @@ export default function FoundersModal({ open, onOpenChange }) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-[#12161C] border-[#A78BFA]/20 text-white max-w-2xl overflow-y-auto max-h-[90vh]">
-        <DialogHeader>
-          <DialogTitle className="text-xl text-white">
-            Founding Member Reservation
-          </DialogTitle>
-        </DialogHeader>
-        
-        {/* ConvertKit HTML Form */}
+      <DialogContent className="bg-transparent border-0 text-white max-w-4xl overflow-y-auto max-h-[90vh] p-0">
+        {/* ConvertKit HTML Form - Let it render with its own styling */}
         <div 
           ref={formContainerRef}
-          className="mt-4"
+          className="w-full"
           dangerouslySetInnerHTML={{
             __html: `
               <form action="https://app.kit.com/forms/8746800/subscriptions" class="seva-form formkit-form" method="post" data-sv-form="8746800" data-uid="bc28e36a5e" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}' min-width="400 500 600 700 800" style="background-color: rgb(10, 15, 44); border-radius: 6px;">
@@ -108,6 +102,20 @@ export default function FoundersModal({ open, onOpenChange }) {
             `
           }}
         />
+        
+        {/* Close button at bottom */}
+        <div className="mt-4 pt-4 border-t border-[#A78BFA]/20 flex justify-center bg-[#12161C] pb-4">
+          <Button
+            variant="ghost"
+            onClick={handleClose}
+            className="text-[#E6EAF0]/80 hover:text-white hover:bg-[#A78BFA]/10"
+          >
+            No Thanks
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 
         {/* Close button at bottom */}
         <div className="mt-4 pt-4 border-t border-[#A78BFA]/20 flex justify-center">
