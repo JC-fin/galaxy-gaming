@@ -116,18 +116,4 @@ export default function FoundersModal({ open, onOpenChange }) {
       </DialogContent>
     </Dialog>
   );
-
-        {/* Close button at bottom */}
-        <div className="mt-4 pt-4 border-t border-[#A78BFA]/20 flex justify-center">
-          <Button
-            variant="ghost"
-            onClick={handleClose}
-            className="text-[#E6EAF0]/80 hover:text-white hover:bg-[#A78BFA]/10"
-          >
-            No Thanks
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 }
