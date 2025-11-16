@@ -143,8 +143,9 @@ export default function Landing() {
           background-size: 40px 40px;
         }
         
+        /* REMOVED: hero-glow animation - keeping hero always bright */
         .hero-glow {
-          filter: drop-shadow(0 0 60px rgba(124, 58, 237, 0.3));
+          /* No filter - hero stays bright without dimming/brightening effect */
         }
         
         .card-hover {
