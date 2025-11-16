@@ -29,14 +29,23 @@ export default function AccountSettings() {
 
   const loadUserData = async () => {
     try {
-      const currentUser = await base44.auth.me();
-      setUser(currentUser);
+      // DISABLED: Base44 auth call to prevent redirects
+      // const currentUser = await base44.auth.me();
+      // setUser(currentUser);
+      // setFormData({
+      //   full_name: currentUser.full_name || "",
+      //   email: currentUser.email || "",
+      //   phone: currentUser.phone || "",
+      //   subscription_type: currentUser.subscription_type || "None",
+      //   profile_picture: currentUser.profile_picture || ""
+      // });
+      // Using placeholder data for now
       setFormData({
-        full_name: currentUser.full_name || "",
-        email: currentUser.email || "",
-        phone: currentUser.phone || "",
-        subscription_type: currentUser.subscription_type || "None",
-        profile_picture: currentUser.profile_picture || ""
+        full_name: "",
+        email: "",
+        phone: "",
+        subscription_type: "None",
+        profile_picture: ""
       });
     } catch (error) {
       console.error("Failed to load user data:", error);
@@ -51,8 +60,13 @@ export default function AccountSettings() {
 
     setUploading(true);
     try {
-      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      // DISABLED: Base44 file upload to prevent redirects
+      // const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      // setFormData({ ...formData, profile_picture: file_url });
+      // For now, create a local object URL
+      const file_url = URL.createObjectURL(file);
       setFormData({ ...formData, profile_picture: file_url });
+      alert("Image uploaded locally (Base44 upload disabled)");
     } catch (error) {
       console.error("Failed to upload image:", error);
       alert("Failed to upload image. Please try again.");
@@ -67,12 +81,15 @@ export default function AccountSettings() {
     setSaved(false);
 
     try {
-      await base44.auth.updateMe({
-        full_name: formData.full_name,
-        phone: formData.phone,
-        subscription_type: formData.subscription_type,
-        profile_picture: formData.profile_picture
-      });
+      // DISABLED: Base44 auth update to prevent redirects
+      // await base44.auth.updateMe({
+      //   full_name: formData.full_name,
+      //   phone: formData.phone,
+      //   subscription_type: formData.subscription_type,
+      //   profile_picture: formData.profile_picture
+      // });
+      // For now, just show success message
+      console.log("Would update user:", formData);
       
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
