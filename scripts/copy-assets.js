@@ -5,11 +5,17 @@ const base44ExportPath = path.join(__dirname, '..', 'base44-export');
 const brandAssetsPath = path.join(__dirname, '..', 'brand-assets');
 
 // Ensure base44-export directories exist
-// Vite apps typically use src/assets, but some may have public folder
+// Vite serves static assets from public/ folder at root path
+// So /assets/brand/... maps to public/assets/brand/...
 const publicAssetsPath = path.join(base44ExportPath, 'public', 'assets', 'brand');
 const srcAssetsPath = path.join(base44ExportPath, 'src', 'assets', 'brand');
 
-// Create directories if they don't exist
+// Create directories if they don't exist (including public folder)
+const publicPath = path.join(base44ExportPath, 'public');
+if (!fs.existsSync(publicPath)) {
+  fs.mkdirSync(publicPath, { recursive: true });
+}
+
 [publicAssetsPath, srcAssetsPath].forEach(dir => {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
