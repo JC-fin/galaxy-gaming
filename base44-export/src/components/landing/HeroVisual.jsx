@@ -6,7 +6,7 @@ export default function HeroVisual({ imageUrl }) {
   const heroImageUrl = imageUrl || "/assets/brand/images/Hero Image 3.png";
   
   return (
-    <div className="relative hero-glow w-full flex justify-center lg:justify-end">
+    <div className="relative w-full flex justify-center lg:justify-end">
       {heroImageUrl ? (
         <div className="relative w-full max-w-[600px] lg:max-w-[800px]">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">

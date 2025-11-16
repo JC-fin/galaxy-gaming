@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +22,7 @@ import PricingCard from "../components/landing/PricingCard";
 import FeatureCard from "../components/landing/FeatureCard";
 import FAQItem from "../components/landing/FAQItem";
 import HeroVisual from "../components/landing/HeroVisual";
+import FoundersModal from "../components/landing/FoundersModal";
 import { Link } from 'react-router-dom';
 
 const createPageUrl = (pageName) => {
@@ -35,10 +36,26 @@ const createPageUrl = (pageName) => {
 
 export default function Landing() {
   const [expandedFAQ, setExpandedFAQ] = useState(null);
+  const [showFoundersModal, setShowFoundersModal] = useState(false);
 
   const toggleFAQ = (index) => {
     setExpandedFAQ(expandedFAQ === index ? null : index);
   };
+
+  // Show founders modal on first visit
+  useEffect(() => {
+    const hasSubmitted = localStorage.getItem('founders_modal_submitted');
+    const hasDismissed = localStorage.getItem('founders_modal_dismissed');
+    
+    if (!hasSubmitted && !hasDismissed) {
+      // Show after a short delay
+      const timer = setTimeout(() => {
+        setShowFoundersModal(true);
+      }, 1000); // 1 second delay
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const faqData = [
     {
@@ -543,6 +560,12 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* Founders Modal */}
+      <FoundersModal 
+        open={showFoundersModal} 
+        onOpenChange={setShowFoundersModal} 
+      />
     </div>
   );
 }
