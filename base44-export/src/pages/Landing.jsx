@@ -203,7 +203,7 @@ export default function Landing() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-16 lg:py-24 relative z-10">
           {/* Left: Copy & CTAs */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="space-y-8 relative z-20">
+            <div className="space-y-8 relative z-20 order-2 lg:order-1">
               <div className="space-y-4">
                 <h2 className="display-heading text-4xl lg:text-5xl xl:text-6xl leading-tight text-white font-bold" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>
                   Curated Monthly MTG Boxes
@@ -233,7 +233,7 @@ export default function Landing() {
             </div>
 
             {/* Right: Visual */}
-            <div className="relative">
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
               <HeroVisual imageUrl={images.heroBox} />
             </div>
           </div>

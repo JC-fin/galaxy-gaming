@@ -6,14 +6,15 @@ export default function HeroVisual({ imageUrl }) {
   const heroImageUrl = imageUrl || "/assets/brand/images/Hero Image 3.png";
   
   return (
-    <div className="relative hero-glow">
+    <div className="relative hero-glow w-full flex justify-center lg:justify-end">
       {heroImageUrl ? (
-        <div className="relative">
+        <div className="relative w-full max-w-[600px] lg:max-w-[800px]">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             <img 
               src={heroImageUrl} 
               alt="MTG Subscription Box" 
-              className="w-full max-w-[800px] h-auto aspect-square object-contain"
+              className="w-full h-auto object-contain"
+              style={{ maxWidth: '800px', maxHeight: '800px' }}
             />
           </div>
         </div>

@@ -15,16 +15,16 @@ export function LogoGlyph({ theme = "dark", className = "" }) {
 }
 
 export function LogoWordmark({ theme = "dark", className = "" }) {
-  // Use Full Wordmark - White.svg from brand assets
+  // Use Galaxy (no gaming) white.svg from brand assets
   const wordmarkUrl = theme === "dark"
-    ? "/assets/brand/logos/SVGs/Full Wordmark - White.svg"
-    : "/assets/brand/logos/SVGs/Full Wordmark - Blue.svg";
+    ? "/assets/brand/logos/SVGs/Galaxy (no gaming) white.svg"
+    : "/assets/brand/logos/SVGs/Galaxy (no gaming) white.svg";
   
   return (
     <img 
       src={wordmarkUrl} 
-      alt="Galaxy Gaming Co." 
-      className={`h-8 ${className}`}
+      alt="Galaxy" 
+      className={`h-12 ${className}`}
     />
   );
 }
