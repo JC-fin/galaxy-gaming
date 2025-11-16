@@ -23,10 +23,14 @@ export default function UserMenu({ theme, onThemeToggle }) {
 
   const loadUser = async () => {
     try {
-      const currentUser = await base44.auth.me();
-      setUser(currentUser);
+      // DISABLED: Base44 auth call to prevent redirects
+      // const currentUser = await base44.auth.me();
+      // setUser(currentUser);
+      // For now, set user to null to show Sign In button
+      setUser(null);
     } catch (error) {
       console.error("Failed to load user:", error);
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -34,16 +38,19 @@ export default function UserMenu({ theme, onThemeToggle }) {
 
   const updateLastLogin = async () => {
     try {
-      await base44.auth.updateMe({
-        last_logged_in_date: new Date().toISOString()
-      });
+      // DISABLED: Base44 auth update to prevent redirects
+      // await base44.auth.updateMe({
+      //   last_logged_in_date: new Date().toISOString()
+      // });
     } catch (error) {
       console.error("Failed to update last login:", error);
     }
   };
 
   const handleLogout = () => {
-    base44.auth.logout();
+    // DISABLED: Base44 logout to prevent redirects
+    // base44.auth.logout();
+    setUser(null);
   };
 
   if (loading) {
@@ -54,12 +61,13 @@ export default function UserMenu({ theme, onThemeToggle }) {
 
   if (!user) {
     return (
-      <Button
-        onClick={() => base44.auth.redirectToLogin()}
-        className="bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white hover:opacity-90"
-      >
-        Sign In
-      </Button>
+      <Link to={createPageUrl("Subscribe")}>
+        <Button
+          className="bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white hover:opacity-90"
+        >
+          Sign In
+        </Button>
+      </Link>
     );
   }
 
