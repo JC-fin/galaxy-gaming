@@ -12,37 +12,34 @@ export default function FoundersModal({ open, onOpenChange }) {
   const formContainerRef = useRef(null);
 
   useEffect(() => {
-    if (open && !scriptLoaded.current) {
-      // Create and load the ConvertKit script
-      const script = document.createElement('script');
-      script.async = true;
-      script.setAttribute('data-uid', 'bc28e36a5e');
-      script.src = 'https://galaxy-gaming-2.kit.com/bc28e36a5e/index.js';
+    if (open) {
+      // Check if script already exists
+      let existingScript = document.querySelector('script[data-uid="bc28e36a5e"]');
       
-      // Append to body
-      document.body.appendChild(script);
-      scriptLoaded.current = true;
+      if (!existingScript && !scriptLoaded.current) {
+        // Create and load the ConvertKit script
+        const script = document.createElement('script');
+        script.async = true;
+        script.setAttribute('data-uid', 'bc28e36a5e');
+        script.src = 'https://galaxy-gaming-2.kit.com/bc28e36a5e/index.js';
+        
+        // Append to body
+        document.body.appendChild(script);
+        scriptLoaded.current = true;
 
-      // Optional: Listen for form submission to close modal
-      script.onload = () => {
-        // ConvertKit forms typically trigger a success event
-        // You can listen for it and close the modal
-        window.addEventListener('convertkit:subscribed', () => {
-          // Close modal after successful submission
-          setTimeout(() => {
-            onOpenChange(false);
-            // Mark as submitted so it doesn't show again
-            localStorage.setItem('founders_modal_submitted', 'true');
-          }, 2000); // Give user time to see success message
-        });
-      };
-
-      return () => {
-        // Cleanup on unmount
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-      };
+        // Listen for form submission to close modal
+        script.onload = () => {
+          // ConvertKit forms typically trigger a success event
+          window.addEventListener('convertkit:subscribed', () => {
+            // Close modal after successful submission
+            setTimeout(() => {
+              onOpenChange(false);
+              // Mark as submitted so it doesn't show again
+              localStorage.setItem('founders_modal_submitted', 'true');
+            }, 2000); // Give user time to see success message
+          });
+        };
+      }
     }
   }, [open, onOpenChange]);
 

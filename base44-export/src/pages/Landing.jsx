@@ -160,10 +160,7 @@ export default function Landing() {
           background-size: 40px 40px;
         }
         
-        /* REMOVED: hero-glow animation - keeping hero always bright */
-        .hero-glow {
-          /* No filter - hero stays bright without dimming/brightening effect */
-        }
+        /* REMOVED: hero-glow class completely - no animation or filter */
         
         .card-hover {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
