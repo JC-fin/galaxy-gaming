@@ -1,0 +1,15 @@
+{
+  "name": "galaxy-gaming",
+  "version": "1.0.0",
+  "description": "Full stack for Galaxy Gaming Co., a subscription based MTG card supplying service",
+  "scripts": {
+    "dev": "cd base44-export && npm run dev",
+    "build": "npm run copy-assets && cd base44-export && npm run build",
+    "copy-assets": "node scripts/copy-assets.js",
+    "preview": "cd base44-export && npm run preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
