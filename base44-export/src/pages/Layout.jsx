@@ -141,7 +141,7 @@ export default function Layout({ children, currentPageName }) {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
-              <LogoWordmark theme={theme} className="mb-4 h-10" />
+              <LogoWordmark theme={theme} className="mb-4 h-12" />
               <p className={`${textColorMuted} text-sm`}>
                 Premium Magic the Gathering subscription boxes for collectors and players.
               </p>
