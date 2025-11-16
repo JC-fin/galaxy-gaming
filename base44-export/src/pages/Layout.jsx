@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { LogoWordmark } from "./components/brand/Logo";
-import UserMenu from "./components/layout/UserMenu";
+import { LogoWordmark } from "@/components/brand/Logo";
+import UserMenu from "@/components/layout/UserMenu";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
