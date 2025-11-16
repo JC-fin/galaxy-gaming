@@ -11,38 +11,54 @@ export default function FoundersModal({ open, onOpenChange }) {
 
   useEffect(() => {
     if (open && formContainerRef.current && !scriptLoaded.current) {
-      // Load ConvertKit script - it will automatically render the form
-      const script = document.createElement('script');
-      script.async = true;
-      script.setAttribute('data-uid', 'bc28e36a5e');
-      script.src = 'https://galaxy-gaming-2.kit.com/bc28e36a5e/index.js';
+      // Create a unique container ID for ConvertKit to target
+      const containerId = 'ck-form-container-' + Date.now();
+      formContainerRef.current.id = containerId;
       
-      // Script will automatically find and render form in container
-      script.onload = () => {
-        scriptLoaded.current = true;
+      // Load ConvertKit base script first
+      const baseScript = document.createElement('script');
+      baseScript.src = 'https://f.convertkit.com/ckjs/ck.5.js';
+      baseScript.async = true;
+      
+      baseScript.onload = () => {
+        // Then load the form script
+        const formScript = document.createElement('script');
+        formScript.async = true;
+        formScript.setAttribute('data-uid', 'bc28e36a5e');
+        formScript.src = 'https://galaxy-gaming-2.kit.com/bc28e36a5e/index.js';
         
-        // Listen for successful submission
-        const checkForSuccess = setInterval(() => {
-          const successMessage = formContainerRef.current?.querySelector('.formkit-alert-success');
-          if (successMessage) {
-            setTimeout(() => {
-              onOpenChange(false);
-              localStorage.setItem('founders_modal_submitted', 'true');
-            }, 2000);
-            clearInterval(checkForSuccess);
-          }
-        }, 500);
+        // ConvertKit will render the form - listen for it
+        formScript.onload = () => {
+          scriptLoaded.current = true;
+          
+          // Wait a bit for form to render, then check for success
+          setTimeout(() => {
+            const form = formContainerRef.current?.querySelector('.seva-form');
+            if (form) {
+              form.addEventListener('submit', (e) => {
+                setTimeout(() => {
+                  const success = formContainerRef.current?.querySelector('.formkit-alert-success');
+                  if (success) {
+                    setTimeout(() => {
+                      onOpenChange(false);
+                      localStorage.setItem('founders_modal_submitted', 'true');
+                    }, 2000);
+                  }
+                }, 500);
+              });
+            }
+          }, 1000);
+        };
         
-        // Cleanup interval after 30 seconds
-        setTimeout(() => clearInterval(checkForSuccess), 30000);
+        document.body.appendChild(formScript);
       };
       
-      document.body.appendChild(script);
+      document.body.appendChild(baseScript);
 
       return () => {
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
+        if (baseScript.parentNode) baseScript.parentNode.removeChild(baseScript);
+        const formScript = document.querySelector('script[data-uid="bc28e36a5e"]');
+        if (formScript?.parentNode) formScript.parentNode.removeChild(formScript);
       };
     }
   }, [open, onOpenChange]);
@@ -53,11 +69,10 @@ export default function FoundersModal({ open, onOpenChange }) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-transparent border-0 shadow-none p-0 max-w-4xl overflow-visible">
+      <DialogContent className="bg-transparent border-0 shadow-none p-6 max-w-4xl overflow-visible">
         {/* ConvertKit will render form here automatically */}
         <div 
           ref={formContainerRef}
-          id="convertkit-form-container"
           className="w-full"
         />
         
